@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontrol Lampu ESP32</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding-top: 40px; }
+    button { 
+      padding: 15px 30px; 
+      margin: 10px; 
+      font-size: 18px; 
+      border: none; 
+      border-radius: 8px; 
+      cursor: pointer;
+    }
+    .on { background-color: #4CAF50; color: white; }
+    .off { background-color: #f44336; color: white; }
+  </style>
+</head>
+<body>
+  <h1>Kontrol Lampu ESP32</h1>
+  <p>Pastikan ESP32 kamu sudah online.</p>
+
+  <button class="on" onclick="sendCommand('on')">Nyalakan Lampu</button>
+  <button class="off" onclick="sendCommand('off')">Matikan Lampu</button>
+
+  <script>
+    const esp32URL = "http://YOUR_ESP32_IP"; // Ganti dengan IP ESP32 kamu
+
+    function sendCommand(state) {
+      fetch(`${esp32URL}/${state}`)
+        .then(response => console.log(`Command: ${state}`))
+        .catch(error => console.error('Error:', error));
+    }
+  </script>
+</body>
+</html>
